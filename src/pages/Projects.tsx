@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { 
   Plus, 
   Search, 
@@ -11,7 +12,11 @@ import {
   MoreVertical,
   Calendar,
   Users,
-  FolderOpen
+  FolderOpen,
+  FileText,
+  Upload,
+  Eye,
+  MapPin
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -27,63 +32,45 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      name: "Website Redesign",
-      description: "Complete redesign of company website with modern UI/UX",
-      status: "In Progress",
+      name: "Łazienka Premium - Hotel Kraków",
+      description: "Kompleksowy projekt łazienki hotelowej z kafelkami premium",
+      status: "Produkcja",
       progress: 85,
       deadline: "2024-07-15",
-      team: ["John", "Sarah", "Mike", "Lisa"],
+      client: "Hotel Kraków Centrum",
+      manager: "Jan Kowalski",
+      location: "Kraków, ul. Floriańska 12",
+      value: "450,000 PLN",
+      team: ["Anna Kowalska", "Piotr Nowak", "Maria Zielińska"],
       color: "bg-blue-500"
     },
     {
       id: 2,
-      name: "Mobile App Development",
-      description: "Native mobile application for iOS and Android",
-      status: "In Progress",
+      name: "Kuchnia Nowoczesna - Dom Prywatny",
+      description: "Projekt nowoczesnej kuchni z mozaiką i kafelkami dekoracyjnymi",
+      status: "Projektowanie",
       progress: 60,
-      deadline: "2024-08-30",
-      team: ["Alex", "Emma", "David"],
+      deadline: "2024-07-20",
+      client: "Dom Prywatny - Nowak",
+      manager: "Anna Nowak",
+      location: "Kraków, ul. Słoneczna 15",
+      value: "85,000 PLN",
+      team: ["Tomasz Wiśniewski", "Łukasz Kowalski"],
       color: "bg-green-500"
     },
     {
       id: 3,
-      name: "API Integration",
-      description: "Integration with third-party APIs and services",
-      status: "Completed",
-      progress: 100,
-      deadline: "2024-06-01",
-      team: ["Tom", "Anna"],
-      color: "bg-purple-500"
-    },
-    {
-      id: 4,
-      name: "User Research Study",
-      description: "Comprehensive user research and usability testing",
-      status: "Planning",
+      name: "Salon SPA - Hotel Wellness",
+      description: "Luksusowy salon SPA z kafelkami 3D i elementami relaksacyjnymi",
+      status: "Wycena",
       progress: 30,
-      deadline: "2024-09-15",
-      team: ["Maria", "Carlos"],
-      color: "bg-orange-500"
-    },
-    {
-      id: 5,
-      name: "Database Migration",
-      description: "Migration to new database infrastructure",
-      status: "Not Started",
-      progress: 0,
-      deadline: "2024-10-01",
-      team: ["Robert", "Nina", "James"],
-      color: "bg-red-500"
-    },
-    {
-      id: 6,
-      name: "Security Audit",
-      description: "Complete security assessment and vulnerability testing",
-      status: "In Progress",
-      progress: 45,
-      deadline: "2024-07-30",
-      team: ["Kevin", "Sophie"],
-      color: "bg-indigo-500"
+      deadline: "2024-08-01",
+      client: "Hotel Wellness",
+      manager: "Maria Zielińska",
+      location: "Zakopane, ul. Krupówki 45",
+      value: "320,000 PLN",
+      team: ["Jan Nowak", "Anna Kowalska"],
+      color: "bg-purple-500"
     }
   ];
 

@@ -2,10 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { 
   LayoutDashboard, 
   FolderOpen, 
-  CheckSquare, 
-  Calendar, 
-  BarChart3, 
-  Settings,
+  Users, 
+  UserCheck, 
+  Palette, 
+  Cog, 
+  Warehouse,
+  Factory,
   User
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -19,11 +21,13 @@ interface SidebarProps {
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: LayoutDashboard },
-  { name: "Projects", href: "/projects", icon: FolderOpen },
-  { name: "Tasks", href: "/tasks", icon: CheckSquare },
-  { name: "Calendar", href: "/calendar", icon: Calendar },
-  { name: "Analytics", href: "/analytics", icon: BarChart3 },
-  { name: "Settings", href: "/settings", icon: Settings },
+  { name: "Projekty", href: "/projects", icon: FolderOpen },
+  { name: "Klienci", href: "/clients", icon: Users },
+  { name: "Managerowie", href: "/managers", icon: UserCheck },
+  { name: "Projektanci", href: "/designers", icon: Palette },
+  { name: "CNC", href: "/cnc", icon: Cog },
+  { name: "Magazyn", href: "/warehouse", icon: Warehouse },
+  { name: "Produkcja", href: "/production", icon: Factory },
 ];
 
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
