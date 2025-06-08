@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -36,13 +36,8 @@ import {
   Calendar,
   Paperclip,
   ShoppingCart,
-  Clock,
-  Calculator
+  Clock
 } from "lucide-react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/components/ui/use-toast";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 
 const activeProjects = [
   {
@@ -101,10 +96,10 @@ const designTasks = [
 ];
 
 const materialsData = [
-  { name: "Drewno dębowe", quantity: "150 m3", status: "available", price: 250, unit: "m3" },
-  { name: "Śruby M10", quantity: "500 szt.", status: "missing", price: 0.25, unit: "szt." },
-  { name: "Blacha stalowa 2mm", quantity: "50 m2", status: "ordered", price: 35, unit: "m2" },
-  { name: "Farba akrylowa biała", quantity: "20 litrów", status: "available", price: 12, unit: "litr" },
+  { name: "Drewno dębowe", quantity: "150 m3", status: "available" },
+  { name: "Śruby M10", quantity: "500 szt.", status: "missing" },
+  { name: "Blacha stalowa 2mm", quantity: "50 m2", status: "ordered" },
+  { name: "Farba akrylowa biała", quantity: "20 litrów", status: "available" },
 ];
 
 const productionTasksData = [
@@ -114,38 +109,9 @@ const productionTasksData = [
     { id: 4, name: "Montaż Podzespołów D", assigned: "Operator 1", status: "planned" },
 ];
 
-type AlertVariant = 'destructive' | 'default';
-interface AlertItem {
-  id: number;
-  type: string;
-  title: string;
-  description: string;
-  variant: AlertVariant;
-}
 
 const Managers = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null);
-  const [assignModalOpen, setAssignModalOpen] = useState(false);
-  const [selectedMaterial, setSelectedMaterial] = useState<any>(null);
-  const [assignQuantity, setAssignQuantity] = useState(1);
-  const [assignTask, setAssignTask] = useState<number | "">("");
-  const { toast } = useToast();
-
-  // Lista zadań do przypisania (przykładowe)
-  const assignableTasks = designTasks.map(t => ({ id: t.id, title: t.title }));
-
-  // Funkcja obsługi przypisania
-  const handleAssignMaterial = () => {
-    if (!selectedMaterial || !assignTask || assignQuantity < 1) {
-      toast({ title: "Błąd", description: "Uzupełnij wszystkie pola.", variant: "destructive" });
-      return;
-    }
-    toast({ title: "Przypisano materiał", description: `${selectedMaterial.name} (${assignQuantity}) do zadania: ${assignableTasks.find(t => t.id === assignTask)?.title}` });
-    setAssignModalOpen(false);
-    setSelectedMaterial(null);
-    setAssignQuantity(1);
-    setAssignTask("");
-  };
 
   // Render project details view if a project is selected
   if (selectedProject) {
@@ -427,12 +393,7 @@ const Managers = () => {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between">
                   <CardTitle>Lista Materiałów</CardTitle>
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" onClick={() => setAssignModalOpen(true)}>
-                      <Plus className="h-4 w-4 mr-2" />Przypisz materiał
-                    </Button>
-                    <Button variant="outline" size="sm"><ShoppingCart className="h-4 w-4 mr-2" />Zamów brakujące</Button>
-                  </div>
+                   <Button variant="outline" size="sm"><ShoppingCart className="h-4 w-4 mr-2" />Zamów brakujące</Button>
                 </CardHeader>
                 <CardContent>
                   <Table>
@@ -445,7 +406,7 @@ const Managers = () => {
                     </TableHeader>
                     <TableBody>
                       {materialsData.map((material, index) => (
-                        <TableRow key={index} onClick={() => setSelectedMaterial(material)} className={selectedMaterial?.name === material.name ? "bg-muted/30" : "cursor-pointer hover:bg-muted/10"}>
+                        <TableRow key={index}>
                           <TableCell>{material.name}</TableCell>
                           <TableCell>{material.quantity}</TableCell>
                           <TableCell>
@@ -464,75 +425,6 @@ const Managers = () => {
                    <p className="text-sm text-muted-foreground mt-4">Status materiałów jest synchronizowany z zewnętrznym magazynem (tylko do odczytu).</p>
                 </CardContent>
               </Card>
-              {/* Modal przypisywania materiału */}
-              <Dialog open={assignModalOpen} onOpenChange={setAssignModalOpen}>
-                <DialogContent className="max-w-lg">
-                  <DialogHeader>
-                    <DialogTitle>Przypisz materiał do zadania</DialogTitle>
-                  </DialogHeader>
-                  <div className="space-y-4">
-                    {/* Wybór materiału */}
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Materiał</label>
-                      <select
-                        className="w-full border rounded px-2 py-1"
-                        value={selectedMaterial?.name || ""}
-                        onChange={e => setSelectedMaterial(materialsData.find(m => m.name === e.target.value))}
-                      >
-                        <option value="">Wybierz materiał</option>
-                        {materialsData.map((m, i) => (
-                          <option key={i} value={m.name}>{m.name}</option>
-                        ))}
-                      </select>
-                    </div>
-                    {/* Wybór zadania */}
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Zadanie</label>
-                      <select
-                        className="w-full border rounded px-2 py-1"
-                        value={assignTask}
-                        onChange={e => setAssignTask(e.target.value ? Number(e.target.value) : "")}
-                      >
-                        <option value="">Wybierz zadanie</option>
-                        {assignableTasks.map(t => (
-                          <option key={t.id} value={t.id}>{t.title}</option>
-                        ))}
-                      </select>
-                    </div>
-                    {/* Ilość */}
-                    <div>
-                      <label className="block text-sm font-medium mb-1">Ilość</label>
-                      <Input type="number" min={1} value={assignQuantity} onChange={e => setAssignQuantity(Number(e.target.value))} />
-                    </div>
-                    {/* Podgląd 3D (placeholder) */}
-                    <div className="border rounded p-2 flex flex-col items-center bg-muted/50">
-                      <span className="text-xs text-muted-foreground mb-1">Podgląd 3D</span>
-                      <div className="w-32 h-24 bg-gradient-to-br from-gray-200 to-gray-400 rounded flex items-center justify-center">
-                        <span className="text-muted-foreground">[3D Model]</span>
-                      </div>
-                    </div>
-                    {/* Kalkulator kosztów */}
-                    <div className="flex items-center gap-2">
-                      <Calculator className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-sm">
-                        Koszt: <span className="font-bold">
-                          {selectedMaterial ? (assignQuantity * (selectedMaterial.price || 0)).toFixed(2) : "0.00"} PLN
-                        </span>
-                        {selectedMaterial?.unit && (
-                          <span className="text-xs text-muted-foreground ml-2">({assignQuantity} × {selectedMaterial.price} PLN/{selectedMaterial.unit})</span>
-                        )}
-                      </span>
-                    </div>
-                    {/* Drag & Drop (placeholder) */}
-                    <div className="border-dashed border-2 border-muted rounded p-4 text-center text-muted-foreground cursor-move select-none">
-                      Przeciągnij materiał na zadanie (drag & drop demo)
-                    </div>
-                  </div>
-                  <DialogFooter>
-                    <Button onClick={handleAssignMaterial}>Przypisz</Button>
-                  </DialogFooter>
-                </DialogContent>
-              </Dialog>
             </div>
           </TabsContent>
 
