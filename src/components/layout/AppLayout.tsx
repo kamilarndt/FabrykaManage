@@ -6,9 +6,10 @@ import Sidebar from "./Sidebar";
 
 interface AppLayoutProps {
   children: React.ReactNode;
+  noPadding?: boolean;
 }
 
-const AppLayout = ({ children }: AppLayoutProps) => {
+const AppLayout = ({ children, noPadding = false }: AppLayoutProps) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -30,9 +31,10 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       {/* Main content */}
       <main className={cn(
         "transition-all duration-300 ease-in-out",
-        "lg:ml-64 p-4 lg:p-8"
+        "lg:ml-64",
+        noPadding ? "p-0" : "p-4 lg:p-8"
       )}>
-        <div className="pt-16 lg:pt-0">
+        <div className={noPadding ? undefined : "pt-16 lg:pt-0"}>
           {children}
         </div>
       </main>

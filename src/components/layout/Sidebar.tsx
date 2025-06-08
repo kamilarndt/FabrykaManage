@@ -24,7 +24,7 @@ const navigation = [
   { name: "Projekty", href: "/projects", icon: FolderOpen },
   { name: "Klienci", href: "/clients", icon: Users },
   { name: "Managerowie", href: "/managers", icon: UserCheck },
-  { name: "Projektanci", href: "/designers", icon: Palette },
+  { name: "Board Projektantów", href: "/designers", icon: Palette },
   { name: "CNC", href: "/cnc", icon: Cog },
   { name: "Magazyn", href: "/warehouse", icon: Warehouse },
   { name: "Produkcja", href: "/production", icon: Factory },
