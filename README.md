@@ -1,73 +1,104 @@
-# Welcome to your Lovable project
+# FabrykaManage
 
-## Project info
+FabrykaManage is a modern, modular management system for project-based manufacturing companies, designed to streamline workflows, improve team collaboration, and provide real-time insights into every stage of the production process. The system is tailored for companies specializing in custom projects (e.g., interior design, construction, or manufacturing) and supports the entire lifecycle from client acquisition to project delivery.
 
-**URL**: https://lovable.dev/projects/40d03674-95e6-4f93-ab88-e8d1ae474078
+## Key Features
 
-## How can I edit this code?
+- **Dashboard**: Overview of active projects, KPIs, team workload, and alerts.
+- **Projects**: Manage all projects, track progress, deadlines, and statuses. Archive completed projects.
+- **Managers**: Project management module with detailed project cards, task assignment, materials, contracts, and production tracking.
+- **Clients**: CRM for managing client data, project history, and financials.
+- **Production**: Kanban-style board for tracking production tasks, team assignments, and quality control.
+- **Warehouse**: Inventory management, material tracking, supplier info, and stock alerts.
+- **Designers**: Kanban board for design tasks, priorities, and team collaboration.
 
-There are several ways of editing your application.
+## Technology Stack
 
-**Use Lovable**
+- **Vite** (build tool)
+- **React** (UI library)
+- **TypeScript** (type safety)
+- **shadcn-ui** (UI components)
+- **Tailwind CSS** (utility-first CSS)
+- **Radix UI** (accessible UI primitives)
+- **Supabase** (backend integration)
+- **React Router** (routing)
+- **Zod** (validation)
+- **React Hook Form** (forms)
+- **Lucide React** (icons)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/40d03674-95e6-4f93-ab88-e8d1ae474078) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm (v9+ recommended)
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+### Installation
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Clone the repository
+git clone https://github.com/kamilarndt/FabrykaManage.git
+cd FabrykaManage
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Install dependencies
+npm install
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Running the App
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```sh
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will be available at `http://localhost:5173` by default.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```sh
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Linting
 
-## What technologies are used for this project?
+```sh
+npm run lint
+```
 
-This project is built with:
+## Application Modules Overview
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Dashboard
+- Real-time overview of active projects, KPIs (profitability, team load, deadlines), and alerts for bottlenecks or delays.
 
-## How can I deploy this project?
+### Projects
+- List and manage all projects (active and archived), track progress, deadlines, status, and team assignments.
 
-Simply open [Lovable](https://lovable.dev/projects/40d03674-95e6-4f93-ab88-e8d1ae474078) and click on Share -> Publish.
+### Managers
+- Detailed project cards with modules for information, quotes, contracts, design, materials, production, logistics, and accommodation.
+- Assign materials and tasks, upload files, and manage project lifecycle.
 
-## Can I connect a custom domain to my Lovable project?
+### Clients
+- Manage client database, contact info, project history, and financials.
 
-Yes, you can!
+### Production
+- Kanban board for production tasks, team assignments, progress tracking, and quality control.
+- Drag-and-drop task management.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Warehouse
+- Inventory management, material status, supplier info, stock levels, and cost reports.
+- Alerts for low or critical stock.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Designers
+- Kanban board for design tasks, priorities, deadlines, and team collaboration.
+
+## Customization & Extensibility
+- Built with modular components for easy extension and customization.
+- Uses Tailwind CSS for rapid UI changes.
+- Integrates with Supabase for backend needs (authentication, database, storage).
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+For more information, please contact the repository owner or open an issue on GitHub.
